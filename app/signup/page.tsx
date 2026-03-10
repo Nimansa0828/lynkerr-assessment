@@ -3,17 +3,20 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const router = useRouter();
+  const [isError, setIsError] = useState(false);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setMessage("");
+    setIsError(false);
     
     const { error } = await supabase.auth.signUp({
       email,
@@ -21,40 +24,74 @@ export default function SignupPage() {
     });
 
     if (error) {
+      setIsError(true);
       setMessage(error.message);
     } else {
-      setMessage("Success! Check your email for a confirmation link.");
+      setIsError(false);
+      setMessage("Success! Please check your email for a confirmation link.");
     }
     setLoading(false);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-      <div className="p-8 bg-white shadow-md rounded-lg w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center text-blue-600">Create Account</h1>
-        <form onSubmit={handleSignup} className="space-y-4">
-          <input 
-  type="email" 
-  autoComplete="off" 
-  value={email} 
-  onChange={(e) => setEmail(e.target.value)} 
-/>
+    <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gray-50 px-4">
+      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+        <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">Create Account</h1>
+        
+        <form onSubmit={handleSignup} className="space-y-5">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              placeholder="e.g. traveler@example.com"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-gray-500 bg-white"
+              autoComplete="off" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required
+            />
+          </div>
 
-<input 
-  type="password" 
-  autoComplete="new-password" 
-  value={password} 
-  onChange={(e) => setPassword(e.target.value)} 
-/>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Password
+            </label>
+            <input 
+              type="password" 
+              placeholder="Min. 6 characters"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-gray-500 bg-white"
+              autoComplete="new-password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required
+            />
+          </div>
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 disabled:bg-blue-300"
+            className="w-full bg-blue-600 text-white p-3 rounded-lg font-bold hover:bg-blue-700 transition-all disabled:bg-blue-300 shadow-md shadow-blue-100"
           >
             {loading ? "Registering..." : "Sign Up"}
           </button>
         </form>
-        {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
+
+        {message && (
+          <div className={`mt-4 p-3 rounded-lg border text-sm text-center font-medium ${
+            isError ? "bg-red-50 text-red-600 border-red-100" : "bg-green-50 text-green-600 border-green-100"
+          }`}>
+            {message}
+          </div>
+        )}
+
+        <p className="mt-6 text-center text-sm text-gray-500">
+          Already have an account?{" "}
+          <Link href="/login" className="text-blue-600 font-bold hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

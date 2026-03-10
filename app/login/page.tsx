@@ -17,31 +17,67 @@ export default function LoginPage() {
     if (error) {
       setMessage(error.message);
     } else {
-      router.push("/"); // This sends them to the Feed after login!
+      router.push("/"); 
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-      <div className="p-8 bg-white shadow-md rounded-lg w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center text-blue-600">Login</h1>
+    <div className="flex flex-col items-center justify-center min-h-[80vh] bg-gray-50 px-4">
+      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+        <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">Login</h1>
+        
+        {/* ADDED THE MISSING FORM TAG HERE */}
         <form onSubmit={handleLogin} className="space-y-4">
-          <input 
-  type="email" 
-  autoComplete="off" 
-  value={email} 
-  onChange={(e) => setEmail(e.target.value)} 
-/>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              placeholder="e.g. name@email.com"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-gray-500 bg-white"
+              autoComplete="off" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required
+            />
+          </div>
 
-<input 
-  type="password" 
-  autoComplete="new-password" 
-  value={password} 
-  onChange={(e) => setPassword(e.target.value)} 
-/>
-          <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Login</button>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Password
+            </label>
+            <input 
+              type="password" 
+              placeholder="••••••••"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-gray-500 bg-white"
+              autoComplete="current-password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            className="w-full bg-blue-600 text-white p-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-md shadow-blue-100"
+          >
+            Login
+          </button>
         </form>
-        <p className="mt-4 text-center text-sm">{message}</p>
+
+        {message && (
+          <p className="mt-4 text-center text-sm font-medium text-red-500 bg-red-50 p-2 rounded border border-red-100">
+            {message}
+          </p>
+        )}
+
+        <p className="mt-6 text-center text-sm text-gray-500">
+          Don't have an account?{" "}
+          <a href="/signup" className="text-blue-600 font-bold hover:underline">
+            Sign Up
+          </a>
+        </p>
       </div>
     </div>
   );
