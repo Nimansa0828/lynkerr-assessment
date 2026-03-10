@@ -40,7 +40,7 @@ export default function Home() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {listings.map((item, index) => (
-  <Link href={`/listings/${item.user_id}`} key={item.user_id || index} className="group">
+  <Link href={`/listings/${item.id}`} key={item.id} className="group">
               <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
                 <img 
                   src={item.image_url} 

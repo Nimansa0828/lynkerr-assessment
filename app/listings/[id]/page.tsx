@@ -13,10 +13,10 @@ export default function ListingDetail() {
   useEffect(() => {
     const fetchListing = async () => {
       const { data, error } = await supabase
-        .from("listings")
-        .select("*")
-        .eq("user_id", id)
-        .single();
+  .from("listings")
+  .select("*")
+  .eq("id", id) 
+  .single();
 
       if (error) {
         console.error("Error fetching listing:", error.message);
