@@ -33,22 +33,19 @@ export default function SignupPage() {
       <div className="p-8 bg-white shadow-md rounded-lg w-96">
         <h1 className="text-2xl font-bold mb-6 text-center text-blue-600">Create Account</h1>
         <form onSubmit={handleSignup} className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-2 border rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-2 border rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input 
+  type="email" 
+  autoComplete="off" 
+  value={email} 
+  onChange={(e) => setEmail(e.target.value)} 
+/>
+
+<input 
+  type="password" 
+  autoComplete="new-password" 
+  value={password} 
+  onChange={(e) => setPassword(e.target.value)} 
+/>
           <button
             type="submit"
             disabled={loading}

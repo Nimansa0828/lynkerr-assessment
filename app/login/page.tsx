@@ -26,8 +26,19 @@ export default function LoginPage() {
       <div className="p-8 bg-white shadow-md rounded-lg w-96">
         <h1 className="text-2xl font-bold mb-6 text-center text-blue-600">Login</h1>
         <form onSubmit={handleLogin} className="space-y-4">
-          <input type="email" placeholder="Email" className="w-full p-2 border rounded" onChange={(e) => setEmail(e.target.value)} required />
-          <input type="password" placeholder="Password" className="w-full p-2 border rounded" onChange={(e) => setPassword(e.target.value)} required />
+          <input 
+  type="email" 
+  autoComplete="off" 
+  value={email} 
+  onChange={(e) => setEmail(e.target.value)} 
+/>
+
+<input 
+  type="password" 
+  autoComplete="new-password" 
+  value={password} 
+  onChange={(e) => setPassword(e.target.value)} 
+/>
           <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Login</button>
         </form>
         <p className="mt-4 text-center text-sm">{message}</p>
