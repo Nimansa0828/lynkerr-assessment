@@ -26,7 +26,6 @@ export default function LoginPage() {
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
         <h1 className="text-3xl font-bold text-blue-600 mb-6 text-center">Login</h1>
         
-        {/* ADDED THE MISSING FORM TAG HERE */}
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">
@@ -36,10 +35,12 @@ export default function LoginPage() {
               type="email" 
               placeholder="e.g. name@email.com"
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-gray-500 bg-white"
-              autoComplete="off" 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               required
+              /* The Fix: Starts as readOnly to block auto-fill, becomes editable on focus */
+              readOnly
+              onFocus={(e) => e.target.removeAttribute('readOnly')}
             />
           </div>
 
@@ -51,10 +52,12 @@ export default function LoginPage() {
               type="password" 
               placeholder="••••••••"
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-gray-500 bg-white"
-              autoComplete="current-password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               required
+              /* The Fix: Starts as readOnly to block auto-fill, becomes editable on focus */
+              readOnly
+              onFocus={(e) => e.target.removeAttribute('readOnly')}
             />
           </div>
 
