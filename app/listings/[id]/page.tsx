@@ -15,7 +15,7 @@ export default function ListingDetail() {
       const { data, error } = await supabase
         .from("listings")
         .select("*")
-        .eq("id", id)
+        .eq("user_id", id)
         .single();
 
       if (error) {
