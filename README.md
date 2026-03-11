@@ -3,7 +3,7 @@
 Lynkerr is a full-stack digital platform designed to help travelers discover unique local experiences while empowering small travel businesses. 
 
 ## 🚀 Live Demo & Repository
-- **Live URL:** [[](https://lynkerr-assessment.vercel.app/)]
+- **Live URL:** [(https://lynkerr-assessment.vercel.app/)]
 - **GitHub Repo:** https://github.com/Nimansa0828/lynkerr-assessment
 
 ## 🛠️ Tech Stack
