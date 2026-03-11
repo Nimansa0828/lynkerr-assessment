@@ -7,11 +7,11 @@ import Link from "next/link";
 export default function Home() {
   const [listings, setListings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(""); // State for search
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   useEffect(() => {
     const fetchListings = async () => {
-      // We fetch all data; we'll handle the sorting and filtering in the frontend
+      
       const { data, error } = await supabase
         .from("listings")
         .select("*");
@@ -19,7 +19,7 @@ export default function Home() {
       if (error) {
         console.error("Supabase Error:", error.message);
       } else if (data) {
-        // Safe sorting: newest first if created_at exists
+        
         const sortedData = data.sort((a, b) => {
           if (a.created_at && b.created_at) {
             return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
@@ -34,33 +34,35 @@ export default function Home() {
     fetchListings();
   }, []);
 
-  // Filter listings based on what the user types in the search bar
-  const filteredListings = listings.filter((item) =>
-    item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.location?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.description?.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredListings = listings.filter((item) => {
+  const query = searchQuery.toLowerCase();
+  return (
+    item.title?.toLowerCase().includes(query) ||
+    item.location?.toLowerCase().includes(query) ||
+    item.description?.toLowerCase().includes(query)
   );
+});
 
   if (loading) return <p className="p-10 text-center text-gray-500">Loading experiences...</p>;
 
   return (
     <main className="max-w-6xl mx-auto p-8 bg-white min-h-screen">
-      {/* Header with Search Bar */}
+      {}
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
         <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
           Explore Local <span className="text-blue-600">Experiences</span>
         </h1>
 
         <div className="relative w-full md:w-80">
-          <span className="absolute left-4 top-3 text-gray-400">🔍</span>
-          <input
-            type="text"
-            placeholder="Search destination or activity..."
-            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
+  <span className="absolute left-4 top-3 text-gray-600">🔍</span> {}
+  <input
+    type="text"
+    placeholder="Search destination or activity..."
+    className="w-full pl-12 pr-4 py-3 border border-gray-400 rounded-full text-sm text-gray-900 placeholder-gray-500 bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-md"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+</div>
       </div>
 
       {filteredListings.length === 0 ? (
