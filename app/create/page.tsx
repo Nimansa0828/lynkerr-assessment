@@ -46,7 +46,7 @@ export default function CreateListing() {
     } else {
       setIsError(false);
       setMessage("Success! Your experience has been published.");
-      // Redirect after a short delay so they can see the success message
+      
       setTimeout(() => router.push("/"), 1500);
     }
     setLoading(false);
@@ -58,7 +58,7 @@ export default function CreateListing() {
       
       <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 shadow-xl rounded-2xl border border-gray-100">
         
-        {/* Experience Title */}
+        {}
         <div>
           <label className="block text-sm font-bold text-gray-800 mb-1">Experience Title</label>
           <input 
@@ -71,7 +71,7 @@ export default function CreateListing() {
           />
         </div>
 
-        {/* Location */}
+        {}
         <div>
           <label className="block text-sm font-bold text-gray-800 mb-1">Location</label>
           <input 
@@ -84,7 +84,7 @@ export default function CreateListing() {
           />
         </div>
 
-        {/* Image URL */}
+        {}
         <div>
           <label className="block text-sm font-bold text-gray-800 mb-1">Image URL</label>
           <input 
@@ -97,7 +97,7 @@ export default function CreateListing() {
           />
         </div>
 
-        {/* Description */}
+        {}
         <div>
           <label className="block text-sm font-bold text-gray-800 mb-1">Description</label>
           <textarea 
@@ -109,7 +109,7 @@ export default function CreateListing() {
           />
         </div>
 
-        {/* Price */}
+        {}
         <div>
           <label className="block text-sm font-bold text-gray-800 mb-1">Price (Optional)</label>
           <input 
@@ -121,7 +121,7 @@ export default function CreateListing() {
           />
         </div>
 
-        {/* Feedback Message */}
+        {}
         {message && (
           <div className={`p-4 rounded-lg border text-sm font-medium ${
             isError ? "bg-red-50 text-red-600 border-red-100" : "bg-green-50 text-green-600 border-green-100"

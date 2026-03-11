@@ -38,7 +38,7 @@ export default function LoginPage() {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
               required
-              /* The Fix: Starts as readOnly to block auto-fill, becomes editable on focus */
+             
               readOnly
               onFocus={(e) => e.target.removeAttribute('readOnly')}
             />
@@ -55,7 +55,7 @@ export default function LoginPage() {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               required
-              /* The Fix: Starts as readOnly to block auto-fill, becomes editable on focus */
+              
               readOnly
               onFocus={(e) => e.target.removeAttribute('readOnly')}
             />

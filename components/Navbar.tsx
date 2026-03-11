@@ -10,7 +10,7 @@ export default function Navbar() {
   const router = useRouter();
 
   useEffect(() => {
-    // 1. Check current session
+    
     const getSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
@@ -18,7 +18,7 @@ export default function Navbar() {
 
     getSession();
 
-    // 2. Listen for changes (login/logout)
+    
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
@@ -43,7 +43,7 @@ export default function Navbar() {
 
         {user ? (
           <div className="flex items-center space-x-4">
-            {/* User Profile "Icon" */}
+            {}
             <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xs">
               {user.email?.charAt(0).toUpperCase()}
             </div>
